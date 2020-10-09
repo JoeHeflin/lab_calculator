@@ -1,0 +1,44 @@
+.root {
+    -fx-font-size: 18pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-background: cornsilk;
+}
+
+.vbox {
+    -fx-padding: 25px;
+    -fx-spacing: 20px;
+}
+
+.hbox {
+    -fx-spacing: 10px;
+}
+
+
+.button {
+    -fx-text-fill: violet;
+    -fx-background-color: lightgray;
+    -fx-padding: 10;
+}
+
+.button:hover {
+    -fx-background-color: ghostwhite;
+}
+
+.label {
+    -fx-text-fill: chocolate;
+    -fx-alignment: baseline-right;
+    -fx-padding: 10;
+    -fx-min-width: 140;
+}
+
+.label.answer {
+    -fx-text-fill: violet;
+    -fx-background-color: lightsteelblue;
+    -fx-min-width: 50;
+}
+
+.text-field {
+    -fx-text-fill: violet;
+    -fx-background-color: aquamarine;
+    -fx-min-width: 200;
+}
