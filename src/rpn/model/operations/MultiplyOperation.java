@@ -1,7 +1,8 @@
 package rpn.model.operations;
 
-import java.util.List;
 import rpn.model.Operation;
+
+import java.util.List;
 
 /**
  * Represents the binary multiplication operation between two numbers.

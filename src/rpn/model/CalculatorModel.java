@@ -8,6 +8,8 @@ import rpn.model.operations.AddOperation;
 import rpn.model.operations.MultiplyOperation;
 import rpn.model.operations.NegateOperation;
 
+import javax.management.RuntimeOperationsException;
+
 
 /**
  * Represents a Calculator that recognizes arithmetic expressions given in RPN format.
@@ -33,15 +35,21 @@ public class CalculatorModel {
     }
 
     // execute each operation too produce a single result
-    private int evaluateExpression (List<Operation> expression) {
+    private int evaluateExpression (List<Operation> expression) throws RuntimeException {
+
         Stack<Integer> operands = new Stack<>();
         for (Operation operation : expression) {
-            // TODO: throw exception if not enough operands
+            if (expression.size() < 2) {
+                throw new RuntimeException("Not enough input operands given");
+            }
             if (operation.getNumOperandsNeeded() <= operands.size()) {
                 operation.performOperation(operands);
             }
         }
-        // TODO: throw exception if not exactly one result left on stack
+        if (operands.size() != 1) {
+            throw new RuntimeException("Unused operands");
+        }
+
         return operands.pop();
     }
 

@@ -8,9 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
+import rpn.model.CalculatorModel;
+
 import java.util.List;
 import java.util.ResourceBundle;
-import rpn.model.CalculatorModel;
 
 
 /**

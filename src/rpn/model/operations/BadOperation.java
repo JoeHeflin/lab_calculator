@@ -1,7 +1,7 @@
 package rpn.model.operations;
 
-import rpn.model.Operation;
 
+import rpn.model.Operation;
 
 /**
  * Represents an operation that should not be able to be created.

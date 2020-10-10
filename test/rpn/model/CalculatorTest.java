@@ -2,6 +2,7 @@ package rpn.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -40,5 +41,13 @@ class CalculatorTest {
     void testUnknownOperation () {
         // Something using a badly-implemented operation
         assertThrows(UnsupportedOperationException.class, () -> myCalculator.getResult("Bad"));
+    }
+
+    @Test
+    void testExceptions () {
+        CalculatorModel calculator = new CalculatorModel();
+        assertThrows(Exception.class, () -> calculator.getResult("6"));
+        assertThrows(Exception.class, () -> calculator.getResult("4 4 5 Add"));
+
     }
 }
