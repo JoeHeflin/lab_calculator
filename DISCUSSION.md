@@ -1,5 +1,5 @@
 # Lab Discussion
-## Names
+## Joseph Heflin, jnh24
 
 ### Original Code
 
