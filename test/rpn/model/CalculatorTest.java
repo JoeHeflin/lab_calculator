@@ -44,10 +44,15 @@ class CalculatorTest {
     }
 
     @Test
-    void testExceptions () {
+    void testCalculatorExceptions() {
         CalculatorModel calculator = new CalculatorModel();
-        assertThrows(Exception.class, () -> calculator.getResult("6"));
-        assertThrows(Exception.class, () -> calculator.getResult("4 4 5 Add"));
-
+        CalculatorException exception = assertThrows(CalculatorException.class, () -> calculator.getResult("6"));
+        String actual = exception.getMessage();
+        String expected = "Not enough input operands given";
+        assertTrue(actual.contains(expected));
+        exception = assertThrows(CalculatorException.class, () -> calculator.getResult("4 4 5 Add"));
+        actual = exception.getMessage();
+        expected = "Unused operands";
+        assertTrue(actual.contains(expected));
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
+import rpn.model.CalculatorException;
 import rpn.model.CalculatorModel;
 
 import java.util.List;
@@ -105,8 +106,7 @@ public class CalculatorView {
 			// display answer
 			myAnswer.setText("" + myModel.getResult(expression));
 		}
-		// TODO: update this to catch custom exception rather than all exceptions
-		catch (Exception e) {
+		catch (CalculatorException e) {
 			myAnswer.setText("<error>");
 		}
 	}

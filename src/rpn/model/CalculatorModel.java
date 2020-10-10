@@ -35,19 +35,19 @@ public class CalculatorModel {
     }
 
     // execute each operation too produce a single result
-    private int evaluateExpression (List<Operation> expression) throws RuntimeException {
+    private int evaluateExpression (List<Operation> expression) throws CalculatorException {
 
         Stack<Integer> operands = new Stack<>();
         for (Operation operation : expression) {
             if (expression.size() < 2) {
-                throw new RuntimeException("Not enough input operands given");
+                throw new CalculatorException("Not enough input operands given");
             }
             if (operation.getNumOperandsNeeded() <= operands.size()) {
                 operation.performOperation(operands);
             }
         }
         if (operands.size() != 1) {
-            throw new RuntimeException("Unused operands");
+            throw new CalculatorException("Unused operands");
         }
 
         return operands.pop();
