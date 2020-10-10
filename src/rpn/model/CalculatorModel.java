@@ -2,13 +2,12 @@ package rpn.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Stack;
 import rpn.model.operations.Constant;
 import rpn.model.operations.AddOperation;
 import rpn.model.operations.MultiplyOperation;
 import rpn.model.operations.NegateOperation;
-
-import javax.management.RuntimeOperationsException;
 
 
 /**
@@ -17,6 +16,15 @@ import javax.management.RuntimeOperationsException;
  * @author Robert C. Duvall
  */
 public class CalculatorModel {
+
+    private static final String DEFAULT_RESOURCE_PACKAGE = "Errors.properties";
+    private final ResourceBundle myResources;
+
+    public CalculatorModel(String language) {
+        this.myResources = ResourceBundle.getBundle(language + DEFAULT_RESOURCE_PACKAGE);
+    }
+
+
     /**
      * Returns the result of executing the given operations.
      */
@@ -40,14 +48,14 @@ public class CalculatorModel {
         Stack<Integer> operands = new Stack<>();
         for (Operation operation : expression) {
             if (expression.size() < 2) {
-                throw new CalculatorException("Not enough input operands given");
+                throw new CalculatorException(myResources.getString("NEED_MORE_OPS_MESSAGE"));
             }
             if (operation.getNumOperandsNeeded() <= operands.size()) {
                 operation.performOperation(operands);
             }
         }
         if (operands.size() != 1) {
-            throw new CalculatorException("Unused operands");
+            throw new CalculatorException(myResources.getString("UNUSED_OPS_MESSAGE"));
         }
 
         return operands.pop();

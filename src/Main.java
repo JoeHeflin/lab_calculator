@@ -23,7 +23,7 @@ public class Main extends Application {
     @Override
     public void start (Stage stage) {
         // create program specific components
-        CalculatorModel model = new CalculatorModel();
+        CalculatorModel model = new CalculatorModel("English");
         CalculatorView display = new CalculatorView(model, LANGUAGE);
         // give the window a title
         stage.setTitle(TITLE);

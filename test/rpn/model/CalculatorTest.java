@@ -12,7 +12,7 @@ class CalculatorTest {
 
     @BeforeEach
     void setup () {
-        myCalculator = new CalculatorModel();
+        myCalculator = new CalculatorModel("English");
     }
 
 
@@ -45,7 +45,7 @@ class CalculatorTest {
 
     @Test
     void testCalculatorExceptions() {
-        CalculatorModel calculator = new CalculatorModel();
+        CalculatorModel calculator = new CalculatorModel("English");
         CalculatorException exception = assertThrows(CalculatorException.class, () -> calculator.getResult("6"));
         String actual = exception.getMessage();
         String expected = "Not enough input operands given";
