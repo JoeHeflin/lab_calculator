@@ -48,7 +48,7 @@ class CalculatorTest {
         CalculatorModel calculator = new CalculatorModel("English");
         CalculatorException exception = assertThrows(CalculatorException.class, () -> calculator.getResult("6"));
         String actual = exception.getMessage();
-        String expected = "Not enough input operands given";
+        String expected = "1 operands given, at least 2 needed";
         assertTrue(actual.contains(expected));
         exception = assertThrows(CalculatorException.class, () -> calculator.getResult("4 4 5 Add"));
         actual = exception.getMessage();

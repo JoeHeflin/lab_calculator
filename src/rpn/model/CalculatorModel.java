@@ -18,6 +18,7 @@ import rpn.model.operations.NegateOperation;
 public class CalculatorModel {
 
     private static final String DEFAULT_RESOURCE_PACKAGE = "Errors.properties";
+    private static final String RESOURCE_DIRECTORY = "./resources/";
     private final ResourceBundle myResources;
 
     public CalculatorModel(String language) {
@@ -48,7 +49,7 @@ public class CalculatorModel {
         Stack<Integer> operands = new Stack<>();
         for (Operation operation : expression) {
             if (expression.size() < 2) {
-                throw new CalculatorException(myResources.getString("NEED_MORE_OPS_MESSAGE"));
+                throw new CalculatorException(myResources.getString(String.format("NEED_MORE_OPS_MESSAGE",expression.size())));
             }
             if (operation.getNumOperandsNeeded() <= operands.size()) {
                 operation.performOperation(operands);
@@ -63,23 +64,29 @@ public class CalculatorModel {
 
 
     // convert individual strings into arithmetic operations
-    private Operation makeOperation (String token) throws UnsupportedOperationException {
+    private Operation makeOperation (String token) throws UnsupportedOperationException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         // TODO: refactor this too remove conditionals and replace with reflection
         if (isNumber(token)) {
             return new Constant(token);
         }
-        else if (token.equals("Negate")) {
-            return new NegateOperation();
-        }
-        else if (token.equals("Add")) {
-            return new AddOperation();
-        }
-        else if (token.equals("Multiply")) {
-            return new MultiplyOperation();
-        }
+//        else if (token.equals("Negate")) {
+//            return new NegateOperation();
+//        }
+//        else if (token.equals("Add")) {
+//            return new AddOperation();
+//        }
+//        else if (token.equals("Multiply")) {
+//            return new MultiplyOperation();
+//        }
         else {
-            throw new UnsupportedOperationException(String.format("Unrecognized command: %s", token));
+            Class<?> cl = Class.forName(token);
+            Object obj = cl.newInstance();
+            Operation op = (Operation) obj;
+            return op;
         }
+//        else {
+//            throw new UnsupportedOperationException(String.format("Unrecognized command: %s", token));
+//        }
     }
 
     // verify that given string is a number
